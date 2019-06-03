@@ -34,41 +34,37 @@ function buildCharts(sample) {
     const sortedData = sample_data.sample_values.sort(function(a, b) {
       return parseFloat(b) - parseFloat(a);
     });
-    //console.log(sortedData);
 
     // slice the first 10 values
     const dataSliced = sortedData.slice(0, 10);
     //console.log(dataSliced);
+    const idsSliced = sample_data["otu_ids"].slice(0, 10);
+    // console.log(idsSliced);
 
-    var barLayout = {
-      title: 'Sample Data',
-      font:{
-        family: 'Raleway, sans-serif'
-      },
-      showlegend: false,
-      xaxis: {
-        tickangle: 0,
-      },
-      yaxis: {
-        zeroline: false,
-        gridwidth: 2
-      },
-      bargap :0.05
-    };
-  console.log(dataSliced);
-  console.log(sample_data["otu_ids"]);
-  var barData = [
-    {
-      x: sample_data["otu_ids"],
-      y: dataSliced,
-      text: sample_data["otu_labels"],
-      type: "bar"
-    }
-  ];
+    var data = [
+      {
+        x: idsSliced,
+        y: dataSliced,
+        type: 'bar'
+      }
+    ];
+  
+    Plotly.newPlot('bar', data);
 
-    Plotly.newPlot("bar", barData, barLayout);  
+  // Pie Chart
+  // var trace_pie = {
+  //   values: sample_data.sample_values.slice(0,10),
+  //   labels: sample_data.otu_ids.slice(0,10),
+  //   hovertext: sample_data.otu_labels.slice(0,10),
+  //   type: 'pie'
+  // }
+  // var pie_data = [trace_pie];
+  // var layout_pie = {
+  //   title: "Bacteria Pie Chart",
+  // };
+  // Plotly.plot("bar",pie_data,layout_pie);
 
-    // Plotting bubbleChart
+  // Plotting bubbleChart
     var bubbleLayout = {
       margin: { t: 0 },
       hovermode: "closest",
