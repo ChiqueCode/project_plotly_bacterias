@@ -41,28 +41,28 @@ function buildCharts(sample) {
     const idsSliced = sample_data["otu_ids"].slice(0, 10);
     // console.log(idsSliced);
 
-    var data = [
-      {
-        x: idsSliced,
-        y: dataSliced,
-        type: 'bar'
-      }
-    ];
+    // var data = [
+    //   {
+    //     x: idsSliced,
+    //     y: dataSliced,
+    //     type: 'bar'
+    //   }
+    // ];
   
-    Plotly.newPlot('bar', data);
+    // Plotly.newPlot('bar', data);
 
   // Pie Chart
-  // var trace_pie = {
-  //   values: sample_data.sample_values.slice(0,10),
-  //   labels: sample_data.otu_ids.slice(0,10),
-  //   hovertext: sample_data.otu_labels.slice(0,10),
-  //   type: 'pie'
-  // }
-  // var pie_data = [trace_pie];
-  // var layout_pie = {
-  //   title: "Bacteria Pie Chart",
-  // };
-  // Plotly.plot("bar",pie_data,layout_pie);
+  var trace_pie = {
+    values: sample_data.sample_values.slice(0,10),
+    labels: sample_data.otu_ids.slice(0,10),
+    hovertext: sample_data.otu_labels.slice(0,10),
+    type: 'pie'
+  }
+  var pie_data = [trace_pie];
+  var layout_pie = {
+    title: "Bacteria Pie Chart",
+  };
+  Plotly.plot("bar",pie_data,layout_pie);
 
   // Plotting bubbleChart
     var bubbleLayout = {
