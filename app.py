@@ -94,5 +94,15 @@ def samples(sample):
     }
     return jsonify(data)
 
+@app.route("/wfreq/<sample>")
+def wfreq(sample):
+    """Return washing frequency for sample."""
+    
+    result = db.session.query(Samples_Metadata.WFREQ).\
+        filter(Samples_Metadata.sample == sample).all()
+    sample_wfreq = result[0]
+    
+    return jsonify(sample_wfreq)      
+
 if __name__ == "__main__":
     app.run()
